@@ -2,7 +2,7 @@ let currentNum = "";
 let previousNum = "";
 let operator = "";
 
-const currentDisplayNumber = document.querySelector("currentNumber");
+const currentDisplayNumber = document.querySelector(".currentNumber");
 const previousDisplayNumber = document.querySelector(".previousNumber");
 
 const equal = document.querySelector(".equal");
@@ -22,5 +22,22 @@ numberButtons.forEach((btn) => {
 });
 
 function handleNumber(number) {
-  console.log(number);
+  if (currentNum.length < 12) {
+    currentNum += number;
+    currentDisplayNumber.textContent = currentNum;
+  }
+}
+
+operators.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    handleOperator(e.target.textContent);
+  });
+});
+
+function handleOperator(op) {
+  operator = op;
+  previousNum = currentNum;
+  previousDisplayNumber.textContent = previousNum + " " + operator;
+  currentNum = "";
+  currentDisplayNumber.textContent = "";
 }
