@@ -32,8 +32,10 @@ buttons.forEach((btn) => {
 
 function addClasses(button) {
   const btnNumberClass = "hover:bg-green-500 border-green-500";
-  const btnClearClass = "hover:bg-red-500 border-red-500";
+  const btnClearClass = "hover:bg-orange-500 border-orange-500";
   const btnOpClass = "hover:bg-blue-500 border-blue-500";
+  const btnEqClass = "hover:bg-red-500 border-red-500";
+  const btnDecClass = "hover:bg-yellow-500 border-yellow-500";
 
   if (button.classList.value === "number") {
     btnNumberClass.split(" ").forEach((cls) => button.classList.add(cls));
@@ -41,6 +43,10 @@ function addClasses(button) {
     btnOpClass.split(" ").forEach((cls) => button.classList.add(cls));
   } else if (button.classList.value === "clear") {
     btnClearClass.split(" ").forEach((cls) => button.classList.add(cls));
+  } else if (button.classList.value === "equal") {
+    btnEqClass.split(" ").forEach((cls) => button.classList.add(cls));
+  } else if (button.classList.value === "decimal") {
+    btnDecClass.split(" ").forEach((cls) => button.classList.add(cls));
   }
 
   const baseClass =
