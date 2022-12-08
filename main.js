@@ -6,7 +6,11 @@ const currentDisplayNumber = document.querySelector(".currentNumber");
 const previousDisplayNumber = document.querySelector(".previousNumber");
 
 const equal = document.querySelector(".equal");
-equal.addEventListener("click", compute);
+equal.addEventListener("click", () => {
+  if (currentNum != "" && previousNum != "") {
+    compute();
+  }
+});
 
 const decimal = document.querySelector(".decimal");
 
