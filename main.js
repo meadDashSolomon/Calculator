@@ -15,6 +15,7 @@ equal.addEventListener("click", () => {
 const decimal = document.querySelector(".decimal");
 
 const clear = document.querySelector(".clear");
+clear.addEventListener("click", clearCalc);
 
 const numberButtons = document.querySelectorAll(".number");
 
@@ -82,4 +83,12 @@ function displayResults() {
   } else {
     currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
   }
+}
+
+function clearCalc() {
+  currentNum = "";
+  previousNum = "";
+  operator = "";
+  currentDisplayNumber.textContent = "0";
+  previousDisplayNumber.textContent = "";
 }
