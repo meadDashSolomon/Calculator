@@ -6,7 +6,7 @@ const currentDisplayNumber = document.querySelector(".currentNumber");
 const previousDisplayNumber = document.querySelector(".previousNumber");
 
 const equal = document.querySelector(".equal");
-equal.addEventListener("click", calculate);
+equal.addEventListener("click", compute);
 
 const decimal = document.querySelector(".decimal");
 
@@ -43,19 +43,34 @@ function handleOperator(op) {
   currentDisplayNumber.textContent = "";
 }
 
-function calculate() {
+function compute() {
   previousNum = Number(previousNum);
   currentNum = Number(currentNum);
 
   if (operator === "+") {
-    previousNum = previousNum + currentNum;
+    previousNum += currentNum;
   } else if (operator === "-") {
-    previousNum = previousNum - currentNum;
+    previousNum -= currentNum;
   } else if (operator === "x") {
-    previousNum = previousNum * currentNum;
+    previousNum *= currentNum;
   } else if (operator === "/") {
-    previousNum = previousNum / currentNum;
+    if (currentNum <= 0) {
+      previousNum = "Error";
+      displayResults();
+      return;
+    }
+    previousNum /= currentNum;
   }
+  previousNum = previousNum.toString();
+  displayResults();
+}
+
+function displayResults() {
   previousDisplayNumber.textContent = "";
-  currentDisplayNumber.textContent = previousNum;
+  operator = "";
+  if (previousNum.length <= 11) {
+    currentDisplayNumber.textContent = previousNum;
+  } else {
+    currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
+  }
 }
