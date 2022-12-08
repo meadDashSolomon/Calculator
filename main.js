@@ -13,6 +13,9 @@ equal.addEventListener("click", () => {
 });
 
 const decimal = document.querySelector(".decimal");
+decimal.addEventListener("click", () => {
+  addDecimal();
+});
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", clearCalc);
@@ -109,4 +112,11 @@ function clearCalc() {
   operator = "";
   currentDisplayNumber.textContent = "0";
   previousDisplayNumber.textContent = "";
+}
+
+function addDecimal() {
+  if (!currentNum.includes(".")) {
+    currentNum += ".";
+    currentDisplayNumber.textContent = currentNum;
+  }
 }
