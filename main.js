@@ -28,6 +28,10 @@ numberButtons.forEach((btn) => {
 });
 
 function handleNumber(number) {
+  if (previousNum !== "" && currentNum != "" && operator === "") {
+    previousNum = "";
+    currentDisplayNumber.textContent = currentNum;
+  }
   if (currentNum.length < 12) {
     currentNum += number;
     currentDisplayNumber.textContent = currentNum;
@@ -41,11 +45,24 @@ operators.forEach((btn) => {
 });
 
 function handleOperator(op) {
-  operator = op;
-  previousNum = currentNum;
+  if (previousNum === "") {
+    previousNum = currentNum;
+    operatorCheck(op);
+  } else if (currentNum === "") {
+    operatorCheck(op);
+  } else {
+    compute();
+    operator = op;
+    currentDisplayNumber.textContent = "0";
+    previousDisplayNumber.textContent = previousNum + " " + operator;
+  }
+}
+
+function operatorCheck(text) {
+  operator = text;
   previousDisplayNumber.textContent = previousNum + " " + operator;
+  currentDisplayNumber.textContent = "0";
   currentNum = "";
-  currentDisplayNumber.textContent = "";
 }
 
 function compute() {
@@ -76,13 +93,14 @@ function roundNumber(num) {
 }
 
 function displayResults() {
-  previousDisplayNumber.textContent = "";
-  operator = "";
   if (previousNum.length <= 11) {
     currentDisplayNumber.textContent = previousNum;
   } else {
     currentDisplayNumber.textContent = previousNum.slice(0, 11) + "...";
   }
+  previousDisplayNumber.textContent = "";
+  operator = "";
+  currentNum = "";
 }
 
 function clearCalc() {
